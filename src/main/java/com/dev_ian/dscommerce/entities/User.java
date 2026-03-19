@@ -24,18 +24,25 @@ public class User {
     @OneToMany(mappedBy = "client")
     private List<Order> orders = new ArrayList<>();
 
-    public User(Long id, String name, String email, String phone, String password, LocalDate birthDate, String[] roles) {
+    public User() {
+    }
+
+    public User(Long id, String name, String email, String phone, LocalDate birthDate, String password, String[] roles) {
         this.id = id;
         this.name = name;
         this.email = email;
         this.phone = phone;
-        this.password = password;
         this.birthDate = birthDate;
+        this.password = password;
         this.roles = roles;
     }
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
