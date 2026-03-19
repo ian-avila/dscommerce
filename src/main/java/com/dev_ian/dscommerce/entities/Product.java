@@ -3,6 +3,7 @@ package com.dev_ian.dscommerce.entities;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -87,5 +88,9 @@ public class Product {
 
     public Set<OrderItem> getItems() {
         return items;
+    }
+
+    public List<Order> getOrders() {
+        return this.items.stream().map(OrderItem::getOrder).toList();
     }
 }
