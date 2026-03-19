@@ -2,10 +2,7 @@ package com.dev_ian.dscommerce.entities;
 
 import jakarta.persistence.*;
 
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 
 @Entity
 @Table(name = "tb_category")
@@ -46,4 +43,18 @@ public class Category {
     public Set<Product> getProducts() {
         return products;
     }
+
+    @Override
+    public final boolean equals(Object o) {
+        if (!(o instanceof Category category)) return false;
+
+        return Objects.equals(id, category.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
+    }
+
+
 }
