@@ -2,7 +2,6 @@ package com.dev_ian.dscommerce.entities;
 
 import jakarta.persistence.Embeddable;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToMany;
 import jakarta.persistence.ManyToOne;
 
 import java.util.Objects;
@@ -11,11 +10,11 @@ import java.util.Objects;
 public class OrderItemPK {
 
     @ManyToOne
-    @JoinColumn(name = "order_id")
+    @JoinColumn(name = "product_id")
     private Product product;
 
     @ManyToOne
-    @JoinColumn(name = "product_id")
+    @JoinColumn(name = "order_id")
     private Order order;
 
     public OrderItemPK() {
