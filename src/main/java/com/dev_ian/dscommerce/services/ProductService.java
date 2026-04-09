@@ -30,7 +30,8 @@ public class ProductService {
     }
 
     @Transactional
-    public Product save(ProductDTO productDTO) {
-        return repository.save(productDTO.toProduct());
+    public ProductDTO save(ProductDTO productDTO) {
+        Product product = repository.save(productDTO.toProduct());
+        return new ProductDTO(product);
     }
 }
