@@ -1,6 +1,6 @@
 package com.dev_ian.dscommerce.controllers;
 
-import com.dev_ian.dscommerce.dto.ProductDTO;
+import com.dev_ian.dscommerce.dto.*;
 import com.dev_ian.dscommerce.entities.Product;
 import com.dev_ian.dscommerce.services.ProductService;
 import org.apache.coyote.Response;
@@ -22,22 +22,27 @@ public class ProductController {
     ProductService productService;
 
     @GetMapping()
-    public ResponseEntity<Page<ProductDTO>> findAll(Pageable pageable) {
+    public ResponseEntity<Page<ProductSummary>> findAll(Pageable pageable) {
        return ResponseEntity.ok(productService.findAll(pageable));
     }
 
     @GetMapping(value = "/{id}")
-    public ResponseEntity<ProductDTO> findById(@PathVariable Long id) {
+    public ResponseEntity<ProductResponse> findById(@PathVariable Long id) {
         return ResponseEntity.ok(productService.findById(id));
     }
 
 
     @PostMapping
-    public ResponseEntity<ProductDTO> insert(@RequestBody ProductDTO productDTO) {
-        ProductDTO dto = productService.save(productDTO);
+    public ResponseEntity<ProductResponse> insert(@RequestBody ProductCreateRequest productCreateRequest) {
+        ProductResponse dto = productService.insert(productCreateRequest);
         URI uri = ServletUriComponentsBuilder.fromCurrentRequest()
                 .path("/{id}")
                 .buildAndExpand(dto.getId()).toUri();
         return ResponseEntity.created(uri).body(dto);
+    }
+
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<ProductResponse> update(@RequestBody ProductUpdateRequest productUpdateRequest, @PathVariable Long id) {
+        return ResponseEntity.ok(productService.update(id, productUpdateRequest));
     }
 }
