@@ -4,7 +4,6 @@ import jakarta.persistence.Column;
 
 // Inserir categoria no futuro
 public class ProductCreateRequest {
-    private Long id;
     private String name;
     private String description;
     private Double price;
@@ -13,20 +12,11 @@ public class ProductCreateRequest {
     public ProductCreateRequest() {
     }
 
-    public ProductCreateRequest(Long id, String name, String description, Double price, String imgUrl) {
-        this.id = id;
+    public ProductCreateRequest(String name, String description, Double price, String imgUrl) {
         this.name = name;
         this.description = description;
         this.price = price;
         this.imgUrl = imgUrl;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

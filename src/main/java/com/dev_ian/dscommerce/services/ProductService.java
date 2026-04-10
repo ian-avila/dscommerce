@@ -42,4 +42,9 @@ public class ProductService {
         ProductMapper.updateEntity(productUpdateRequest, opt.get());
         return ProductMapper.toResponse(opt.get());
     }
+
+    @Transactional
+    public void delete(Long id) {
+        repository.deleteById(id);
+    }
 }

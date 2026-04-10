@@ -19,7 +19,7 @@ public final class ProductMapper {
      */
     public static Product toEntity(ProductCreateRequest productCreateRequest) {
 
-        return new Product(productCreateRequest.getId(),
+        return new Product( null,
                 productCreateRequest.getName(),
                 productCreateRequest.getDescription(),
                 productCreateRequest.getPrice(),
