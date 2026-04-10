@@ -1,6 +1,9 @@
 package com.dev_ian.dscommerce.services;
 
-import com.dev_ian.dscommerce.dto.*;
+import com.dev_ian.dscommerce.dto.ProductCreateRequest;
+import com.dev_ian.dscommerce.dto.ProductResponse;
+import com.dev_ian.dscommerce.dto.ProductSummary;
+import com.dev_ian.dscommerce.dto.ProductUpdateRequest;
 import com.dev_ian.dscommerce.entities.Product;
 import com.dev_ian.dscommerce.mappers.ProductMapper;
 import com.dev_ian.dscommerce.repositories.ProductRepository;

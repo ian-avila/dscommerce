@@ -1,9 +1,10 @@
 package com.dev_ian.dscommerce.controllers;
 
-import com.dev_ian.dscommerce.dto.*;
-import com.dev_ian.dscommerce.entities.Product;
+import com.dev_ian.dscommerce.dto.ProductCreateRequest;
+import com.dev_ian.dscommerce.dto.ProductResponse;
+import com.dev_ian.dscommerce.dto.ProductSummary;
+import com.dev_ian.dscommerce.dto.ProductUpdateRequest;
 import com.dev_ian.dscommerce.services.ProductService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,7 +13,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import java.net.URI;
-import java.util.List;
 
 @RestController
 @RequestMapping(value = "/products")
@@ -44,5 +44,11 @@ public class ProductController {
     @PutMapping(value = "/{id}")
     public ResponseEntity<ProductResponse> update(@RequestBody ProductUpdateRequest productUpdateRequest, @PathVariable Long id) {
         return ResponseEntity.ok(productService.update(id, productUpdateRequest));
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
+        productService.delete(id);
+        return ResponseEntity.noContent().build();
     }
 }
