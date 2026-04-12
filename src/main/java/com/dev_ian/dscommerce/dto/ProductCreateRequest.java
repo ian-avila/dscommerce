@@ -9,8 +9,6 @@ public class ProductCreateRequest {
     private Double price;
     private String imgUrl;
 
-    public ProductCreateRequest() {
-    }
 
     public ProductCreateRequest(String name, String description, Double price, String imgUrl) {
         this.name = name;
@@ -31,23 +29,7 @@ public class ProductCreateRequest {
         return description;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+    public Double getPrice() { return price; }
 
-    public Double getPrice() {
-        return price;
-    }
-
-    public void setPrice(Double price) {
-        this.price = price;
-    }
-
-    public String getImgUrl() {
-        return imgUrl;
-    }
-
-    public void setImgUrl(String imgUrl) {
-        this.imgUrl = imgUrl;
-    }
+    public String getImgUrl() { return imgUrl; }
 }

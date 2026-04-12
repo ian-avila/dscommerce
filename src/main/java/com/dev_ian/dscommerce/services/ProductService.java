@@ -7,6 +7,7 @@ import com.dev_ian.dscommerce.dto.ProductUpdateRequest;
 import com.dev_ian.dscommerce.entities.Product;
 import com.dev_ian.dscommerce.mappers.ProductMapper;
 import com.dev_ian.dscommerce.repositories.ProductRepository;
+import com.dev_ian.dscommerce.services.exceptions.ResourceNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -23,8 +24,8 @@ public class ProductService {
 
     @Transactional(readOnly = true)
     public ProductResponse findById(Long id) {
-        Optional<Product> optProduct = repository.findById(id);
-        return ProductMapper.toResponse(optProduct.get());
+        Product product = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
+        return ProductMapper.toResponse(product);
     }
 
     @Transactional(readOnly = true)
