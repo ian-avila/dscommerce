@@ -1,8 +1,5 @@
 package com.dev_ian.dscommerce.dto;
 
-import org.springframework.http.HttpStatus;
-
-import java.net.URI;
 import java.time.Instant;
 
 public class CustomError {
