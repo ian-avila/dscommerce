@@ -14,8 +14,6 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Optional;
-
 @Service
 public class ProductService {
 
@@ -42,13 +40,21 @@ public class ProductService {
 
     @Transactional
     public ProductResponse update(Long id, ProductUpdateRequest productUpdateRequest) {
-        Optional<Product> opt = repository.findById(id);
-        ProductMapper.updateEntity(productUpdateRequest, opt.get());
-        return ProductMapper.toResponse(opt.get());
+        Product product = repository.findById(id).orElseThrow(() -> new ResourceNotFoundException("Resource not found"));
+
+        // Referential integrity violations which launch exceptions are handled directly in @ControllerAdvice
+        ProductMapper.updateEntity(productUpdateRequest, product);
+
+        return ProductMapper.toResponse(product);
     }
 
-    @Transactional
+    @Transactional()
     public void delete(Long id) {
+        if(!repository.existsById(id)) {
+            throw new ResourceNotFoundException("Resource not found");
+        }
+
+        // Referential integrity violations which launch exceptions are handled directly in @ControllerAdvice
         repository.deleteById(id);
     }
 }
