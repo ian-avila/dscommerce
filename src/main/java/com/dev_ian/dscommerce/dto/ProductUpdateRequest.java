@@ -1,10 +1,23 @@
 package com.dev_ian.dscommerce.dto;
 
+import jakarta.validation.constraints.*;
+
 public class ProductUpdateRequest {
     private Long id;
+
+    @Size(min = 8, max = 80,
+            message = "invalid name")
+    @NotBlank(message = "required field")
     private String name;
+
+    @Size(min = 10)
+    @NotBlank(message = "required field")
     private String description;
+
+    @NotNull(message = "required field")
+    @Positive(message = "value must be positive")
     private Double price;
+
     private String imgUrl;
 
 
